@@ -2578,7 +2578,7 @@ In VLSI design, manually checking DRC is impractical due to the vast number of w
 
       <section class="dashboard-roster-card">
         <h3>Manage the student roster</h3>
-        <p>Import a CSV with the headings <code>roll_number,full_name,email</code>. Existing email records are updated; new records are added. Students then activate access using the registered email address.</p>
+        <p>Import a CSV with the headings <code>roll_number,full_name,email</code>. Existing roll-number records are updated; new records are added. Students then activate access using the registered email address.</p>
         <div class="progress-button-row">
           <input id="dashboard-roster-file" type="file" accept=".csv,text/csv"/>
           <button class="progress-primary-button" id="dashboard-import-roster" type="button">Import roster CSV</button>
@@ -9581,7 +9581,7 @@ window.LAB_PROGRESS_CONFIG = {
       const records = parseRosterCsv(await input.files[0].text());
       for (let start = 0; start < records.length; start += 200) {
         const batch = records.slice(start, start + 200);
-        const result = await state.client.from("course_roster").upsert(batch, { onConflict: "email" });
+        const result = await state.client.from("course_roster").upsert(batch, { onConflict: "roll_number" });
         if (result.error) throw result.error;
       }
       input.value = "";
