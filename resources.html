@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="EE476 Resources — Introduction to VLSI Systems, Department of Electrical Engineering, UET Lahore" name="description"/>
+<meta content="#edfaff" name="theme-color"/>
+<title>EE476 · Resources</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+body{margin:0;background:radial-gradient(circle at 12% 8%,rgba(255,255,255,.98) 0 16%,rgba(255,255,255,0) 42%),radial-gradient(circle at 88% 12%,rgba(111,174,255,.34) 0,rgba(111,174,255,0) 42%),linear-gradient(135deg,#fff 0%,#f4f9ff 34%,#e5f1ff 68%,#d7e9ff 100%);background-attachment:fixed}
+.site-header{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:minmax(320px,auto) 1fr auto;align-items:center;gap:24px;padding:12px clamp(18px,4vw,64px);border-bottom:1px solid rgba(47,102,220,.18);background:rgba(244,249,255,.90);backdrop-filter:blur(16px)}
+.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+.brand-logo-wrap{display:grid;width:64px;height:64px;place-items:center}.brand-logo-wrap img{width:100%;height:100%;object-fit:contain}
+.brand-copy{display:flex;flex-direction:column;line-height:1.25}.brand-copy strong{color:#3f434a;font-size:1rem}.brand-copy small{margin-top:4px;color:#6b7280;font-size:.86rem}
+.nav-links{display:flex;justify-content:center;align-items:center;gap:26px}.nav-links a{position:relative;display:inline-block;min-height:44px;padding:10px 0 6px;color:#2f343b;font-weight:700;text-decoration:none}.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:3px;border-radius:999px;background:#2f66dc;transition:width .2s ease}.nav-links a:hover::after,.nav-links a:focus-visible::after,.nav-links a.active::after{width:100%}
+.menu-toggle{display:none;min-height:42px;padding:9px 13px;border:1px solid rgba(47,102,220,.28);border-radius:10px;background:#fff;color:#173844;font:inherit;font-weight:800;cursor:pointer}
+.resources-hero{padding:clamp(60px,8vw,110px) clamp(22px,6vw,100px) clamp(52px,7vw,92px);border-bottom:1px solid rgba(47,102,220,.14);background:linear-gradient(rgba(57,132,219,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(57,132,219,.06) 1px,transparent 1px),radial-gradient(circle at 86% 22%,rgba(85,156,245,.23),transparent 44%),linear-gradient(135deg,#fff 0%,#eef6ff 52%,#dcecff 100%);background-size:44px 44px,44px 44px,auto,auto}
+.resources-kicker{display:inline-flex;margin-bottom:17px;padding:7px 12px;border:1px solid rgba(47,102,220,.20);border-radius:999px;background:rgba(255,255,255,.78);color:#2f66dc;font-size:.83rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.resources-hero h1{max-width:980px;margin:0;color:#071a23;font-size:clamp(3.2rem,7vw,7rem);line-height:.9;letter-spacing:-.06em}.resources-hero h1 span{text-decoration:underline;text-decoration-color:#12bfe8;text-decoration-thickness:.10em;text-underline-offset:.08em}.resources-hero p{max-width:830px;margin:25px 0 0;color:#57708f;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.7}
+.resources-main{max-width:1500px;margin:0 auto;padding:clamp(48px,6vw,82px) clamp(20px,5vw,80px) 90px}.resources-heading{margin-bottom:30px}.resources-heading .eyebrow{color:#2f66dc;font-size:.82rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.resources-heading h2{margin:9px 0 0;color:#173844;font-size:clamp(2rem,4vw,3.8rem);line-height:1;letter-spacing:-.045em}
+.resources-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.resource-card{display:flex;min-height:255px;flex-direction:column;padding:25px;border:1px solid rgba(47,102,220,.17);border-radius:18px;background:rgba(255,255,255,.90);box-shadow:0 12px 30px rgba(35,83,156,.08);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.resource-card:hover{transform:translateY(-3px);border-color:rgba(47,102,220,.30);box-shadow:0 17px 36px rgba(35,83,156,.13)}.resource-card-number{color:#2f66dc;font-size:.78rem;font-weight:900;letter-spacing:.1em}.resource-card h3{margin:18px 0 9px;color:#173844;font-size:1.45rem;line-height:1.18}.resource-card p{margin:0 0 22px;color:#57708f;line-height:1.68}
+.resource-link{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:44px;margin-top:auto;padding:10px 17px;border-radius:999px;background:linear-gradient(180deg,#4389e8,#2f66dc);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 8px 18px rgba(47,102,220,.20)}.resource-link.placeholder{border:1px solid rgba(47,102,220,.22);background:#eef5ff;color:#2457bd;box-shadow:none}
+.resource-note{margin-top:30px;padding:18px 20px;border-left:5px solid #12bfe8;border-radius:12px;background:rgba(239,250,255,.78);color:#466075;line-height:1.65}.simple-footer{width:100%;padding:22px 16px;border-top:1px solid rgba(47,102,220,.18);color:#2f343b;text-align:center;font-size:.95rem}
+html[data-theme="dark"] body{background:radial-gradient(circle at 85% 8%,rgba(47,102,220,.20),transparent 35%),linear-gradient(135deg,#090f1d 0%,#0d1526 55%,#111d34 100%);color:#e8eef8}html[data-theme="dark"] .site-header{border-bottom-color:#2b3955;background:rgba(10,17,31,.92)}html[data-theme="dark"] .brand-copy strong,html[data-theme="dark"] .nav-links a{color:#e8eef8}html[data-theme="dark"] .brand-copy small{color:#aebbd0}html[data-theme="dark"] .resources-hero{border-bottom-color:#2b3955;background:linear-gradient(rgba(85,126,215,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(85,126,215,.09) 1px,transparent 1px),linear-gradient(135deg,#090f1d 0%,#10192c 100%);background-size:44px 44px,44px 44px,auto}html[data-theme="dark"] .resources-hero h1,html[data-theme="dark"] .resources-heading h2,html[data-theme="dark"] .resource-card h3{color:#e8eef8}html[data-theme="dark"] .resources-hero p,html[data-theme="dark"] .resource-card p{color:#b5c1d2}html[data-theme="dark"] .resource-card{border-color:#30415f;background:#111b2e;box-shadow:0 12px 30px rgba(0,0,0,.18)}html[data-theme="dark"] .resource-link.placeholder{border-color:#40557b;background:#172844;color:#9db8ff}html[data-theme="dark"] .resource-note{background:#142238;color:#c4cfde}html[data-theme="dark"] .simple-footer{border-top-color:#2b3955;color:#b8c4d4}
+@media(max-width:980px){.site-header{display:flex;flex-wrap:wrap}.brand{flex:1 1 auto}.menu-toggle{display:inline-flex;align-items:center;justify-content:center}.nav-links{display:none;flex:1 0 100%;flex-direction:column;align-items:stretch;gap:2px;order:3;padding:8px;border:1px solid rgba(47,102,220,.16);border-radius:14px;background:rgba(255,255,255,.95)}.nav-links.open{display:flex}.nav-links a{width:100%;padding:11px 13px}.resources-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.site-header{padding:10px 13px}.brand-logo-wrap{width:46px;height:46px}.brand-copy strong{font-size:.8rem}.brand-copy small{font-size:.72rem}.resources-hero{padding:44px 16px 42px;background-size:34px 34px,34px 34px,auto,auto}.resources-main{padding:42px 16px 60px}.resources-grid{grid-template-columns:1fr}.resource-card{min-height:0}}
+
+.cmos-model-container {
+  width: 100%;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.cmos-model-container iframe {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: 1px solid #d6e0ea;
+  border-radius: 12px;
+  background: #1b242d;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cmos-fullscreen-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: #244f86;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cmos-fullscreen-button:hover {
+  background: #173b68;
+}
+
+@media (max-width: 768px) {
+  .cmos-model-container iframe {
+    height: 600px;
+  }
+}
+
+</style>
+<script>
+(function(){const storageKey="ee476-color-theme";try{const savedTheme=localStorage.getItem(storageKey);if(savedTheme==="dark"||savedTheme==="light"){document.documentElement.dataset.theme=savedTheme}}catch(_error){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<a aria-label="EE476 course home" class="brand" href="index.html">
+<span class="brand-logo-wrap"><img alt="University of Engineering and Technology Lahore logo" src="assets/uet-logo.png"/></span>
+<span class="brand-copy"><strong>University of Engineering and Technology Lahore</strong><strong>Department of Electrical Engineering</strong><small>EE476 · Introduction to VLSI Systems</small></span>
+</a>
+<button aria-controls="primary-nav" aria-expanded="false" class="menu-toggle" type="button">Menu</button>
+<nav aria-label="Primary navigation" class="nav-links" id="primary-nav">
+<a href="index.html">Course Home</a>
+<a class="active" href="resources.html">Resources</a>
+<a href="lab-manual.html">Lab Manual</a>
+</nav>
+</header>
+<main id="main">
+<section class="resources-hero">
+<span class="resources-kicker">EE476 Course Hub</span>
+<h1><span>Resources</span></h1>
+<p>A dedicated space for EE476 course resources.</p>
+</section>
+<section class="resources-main">
+  <div class="resources-heading">
+    <div class="eyebrow">Course Resources</div>
+    <h2>Resources</h2>
+  </div>
+
+  <div class="resource-note">
+    Course resources will be organized and added here.
+  </div>
+</section>
+
+<div class="cmos-model-container">
+  <iframe
+    src="assets/models/cmos-transistor/index.html"
+    title="Interactive 3D CMOS Transistor Model"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+
+  <a
+    href="assets/models/cmos-transistor/index.html"
+    target="_blank"
+    rel="noopener"
+    class="cmos-fullscreen-button">
+    Open Model in Full Screen
+  </a>
+</div>
+
+
+</main>
+<footer class="simple-footer">© 2026 Course Website | Designed by Rehan Naeem</footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){const toggle=document.querySelector(".menu-toggle");const nav=document.getElementById("primary-nav");if(toggle&&nav){toggle.addEventListener("click",function(){const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open))});nav.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){nav.classList.remove("open");toggle.setAttribute("aria-expanded","false")})})}});
+</script>
+</body>
+</html>

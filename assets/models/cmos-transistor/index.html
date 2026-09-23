@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b242d">
+  <meta name="description" content="Interactive 3D NMOS transistor model with accurate orthographic cross-sectional and top views.">
+  <title>CMOS Transistor — Interactive 3D Model</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b242d'/%3E%3Cpath d='M7 43h50v9H7z' fill='%2345505e'/%3E%3Cpath d='M14 34h36v9H14z' fill='%23d9e2e9'/%3E%3Cpath d='M26 13h12v20H26z' fill='%235e71e3'/%3E%3Cpath d='M24 32h16v3H24z' fill='%230e9fde'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="CMOS transistor 3D explorer">
+        <div class="brand-mark" aria-hidden="true">
+          <span class="gate-mark"></span>
+          <span class="oxide-mark"></span>
+          <span class="silicon-mark"></span>
+        </div>
+        <div>
+          <h1>CMOS Transistor</h1>
+          <p>NMOS building block · interactive layer model</p>
+        </div>
+      </div>
+
+      <nav class="view-switch" aria-label="Choose model view">
+        <button class="view-button is-active" type="button" data-view="iso" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.4v9.2L12 21l-8-4.4V7.4L12 3Zm0 2.3L6.2 8.5 12 11.7l5.8-3.2L12 5.3Zm-6 5v5.1l5 2.8v-5.1l-5-2.8Zm7 7.9 5-2.8v-5.1l-5 2.8v5.1Z"/></svg>
+          3D cutaway
+        </button>
+        <button class="view-button" type="button" data-view="cross" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v16H3V4Zm2 2v8h4v-3h6v3h4V6H5Zm0 10v2h14v-2h-4v-3h-4v3H5Z"/></svg>
+          Cross-section
+        </button>
+        <button class="view-button" type="button" data-view="top" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4V4Zm2 2v12h12V6H6Zm5 0h2v12h-2V6ZM6 10h5v4H6v-4Zm7 0h5v4h-5v-4Z"/></svg>
+          Top view
+        </button>
+      </nav>
+
+      <button id="reset-view" class="icon-button" type="button" aria-label="Reset the current view" title="Reset view">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a7 7 0 1 1-6.5 4.4l1.86.74A5 5 0 1 0 12 7H9V4h7v7h-3V7h-1Z"/></svg>
+      </button>
+    </header>
+
+    <main id="viewport" aria-label="Interactive 3D transistor model">
+      <canvas id="model-canvas" aria-label="Rotatable three-dimensional NMOS transistor model"></canvas>
+      <div id="webgl-error" class="webgl-error" hidden>
+        This model needs WebGL. Please open it in a current version of Chrome, Edge, Firefox, or Safari.
+      </div>
+
+      <section class="panel layer-panel" aria-labelledby="layers-title">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Structure</span>
+            <h2 id="layers-title">Model layers</h2>
+          </div>
+          <button id="toggle-panel" class="panel-toggle" type="button" aria-label="Collapse layer panel" aria-expanded="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.4 9.4 4.6 4.6 4.6-4.6L18 10.8l-6 6-6-6 1.4-1.4Z"/></svg>
+          </button>
+        </div>
+        <div class="layer-list" id="layer-list">
+          <button class="layer-row" type="button" data-layer="gate" aria-pressed="true">
+            <span class="swatch swatch-gate"></span>
+            <span><strong>Gate</strong><small>Polycrystalline silicon</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12s2.5-4 7-4 7 4 7 4-2.5 4-7 4-7-4-7-4Zm7 2.2A2.2 2.2 0 1 0 12 9.8a2.2 2.2 0 0 0 0 4.4Z"/></svg>
+          </button>
+          <button class="layer-row" type="button" data-layer="dielectric" aria-pressed="true">
+            <span class="swatch swatch-dielectric"></span>
+            <span><strong>Gate dielectric</strong><small>Silicon dioxide</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12s2.5-4 7-4 7 4 7 4-2.5 4-7 4-7-4-7-4Zm7 2.2A2.2 2.2 0 1 0 12 9.8a2.2 2.2 0 0 0 0 4.4Z"/></svg>
+          </button>
+          <button class="layer-row" type="button" data-layer="diffusion" aria-pressed="true">
+            <span class="swatch swatch-diffusion"></span>
+            <span><strong>Source / drain</strong><small>n+ diffusion regions</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12s2.5-4 7-4 7 4 7 4-2.5 4-7 4-7-4-7-4Zm7 2.2A2.2 2.2 0 1 0 12 9.8a2.2 2.2 0 0 0 0 4.4Z"/></svg>
+          </button>
+          <button class="layer-row" type="button" data-layer="oxide" aria-pressed="true">
+            <span class="swatch swatch-oxide"></span>
+            <span><strong>Field oxide</strong><small>Electrical isolation</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12s2.5-4 7-4 7 4 7 4-2.5 4-7 4-7-4-7-4Zm7 2.2A2.2 2.2 0 1 0 12 9.8a2.2 2.2 0 0 0 0 4.4Z"/></svg>
+          </button>
+          <button class="layer-row" type="button" data-layer="substrate" aria-pressed="true">
+            <span class="swatch swatch-substrate"></span>
+            <span><strong>Silicon substrate</strong><small>p-type body</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12s2.5-4 7-4 7 4 7 4-2.5 4-7 4-7-4-7-4Zm7 2.2A2.2 2.2 0 1 0 12 9.8a2.2 2.2 0 0 0 0 4.4Z"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel accuracy-panel" aria-labelledby="view-title">
+        <span class="eyebrow">Current view</span>
+        <h2 id="view-title">3D cutaway</h2>
+        <p id="view-description">A center cutaway exposes the source, channel, drain, dielectric, and gate while preserving their depth.</p>
+        <div class="accuracy-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 7h2v2h-2V7Zm0 4h2v6h-2v-6Zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z"/></svg>
+          <span>Reference-matched geometry. Dielectric thickness is enlarged so the layer remains visible.</span>
+        </div>
+      </section>
+
+      <div id="model-labels" class="model-labels" aria-hidden="true"></div>
+
+      <div class="view-corner" aria-hidden="true">
+        <svg id="orientation-svg" viewBox="0 0 68 68">
+          <line id="orientation-x" class="orientation-line axis-x" x1="34" y1="40" x2="57" y2="40"/>
+          <line id="orientation-y" class="orientation-line axis-y" x1="34" y1="40" x2="34" y2="17"/>
+          <line id="orientation-z" class="orientation-line axis-z" x1="34" y1="40" x2="18" y2="53"/>
+          <circle cx="34" cy="40" r="3.4"/>
+          <text id="orientation-x-label" class="orientation-label axis-x" x="64" y="43">X</text>
+          <text id="orientation-y-label" class="orientation-label axis-y" x="31" y="10">Y</text>
+          <text id="orientation-z-label" class="orientation-label axis-z" x="9" y="59">Z</text>
+        </svg>
+      </div>
+
+      <footer class="control-strip">
+        <div class="mouse-help">
+          <span class="mouse-icon" aria-hidden="true"><i></i></span>
+          <span><strong>Drag</strong> rotate</span>
+          <span><strong>Wheel</strong> zoom</span>
+          <span><strong>Shift + drag</strong> pan</span>
+        </div>
+        <label class="label-switch" for="labels-toggle">
+          <input id="labels-toggle" type="checkbox" checked>
+          <span class="switch-track"><span></span></span>
+          Labels
+        </label>
+      </footer>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
