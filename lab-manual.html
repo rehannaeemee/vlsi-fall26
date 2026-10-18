@@ -2186,23 +2186,23 @@ In VLSI design, manually checking DRC is impractical due to the vast number of w
 <th scope="col"><strong>Role</strong></th>
 </tr></thead>
 <tbody><tr>
-<td>gcd.v</td>
+<td>gcd_coprocessor</td>
 <td>Top-level single-unit GCD</td>
 </tr>
 <tr>
-<td>gcd_control.v</td>
+<td>gcd_control</td>
 <td>Controller and ready-valid interface</td>
 </tr>
 <tr>
-<td>gcd_datapath.v</td>
+<td>gcd_datapath</td>
 <td>Operand registers, comparison, and subtraction</td>
 </tr>
 <tr>
-<td>EECS151.v</td>
+<td>EECS151</td>
 <td>Supporting RTL modules used by the design</td>
 </tr>
 <tr>
-<td>gcd_testbench.v</td>
+<td>gcd_coprocessor_testbench</td>
 <td>Provided simulation stimulus and result checks</td>
 </tr>
 </tbody></table></div>
@@ -2217,11 +2217,11 @@ In VLSI design, manually checking DRC is impractical due to the vast number of w
 </tr></thead>
 <tbody><tr>
 <td>Synthesis top module</td>
-<td>gcd. Elaborate the design top, not the testbench.</td>
+<td>gcd_coprocessor. Elaborate the design top, not the testbench.</td>
 </tr>
 <tr>
 <td>Synthesis source files</td>
-<td>gcd.v, gcd_datapath.v, gcd_control.v, and EECS151.v, under the local src directory.</td>
+<td>gcd_coprocessor, gcd_datapath, gcd_control, and EECS151, under the local rtl directory.</td>
 </tr>
 <tr>
 <td>Clock name and period</td>
@@ -2314,8 +2314,8 @@ In VLSI design, manually checking DRC is impractical due to the vast number of w
 <td></td>
 </tr>
 </tbody></table></div>
-<p data-word-paragraph="27">2. In src/gcd_testbench.v , the inputs are changed on the negative edge of the clock to prevent hold time violations. Is the output checked on the positive edge of the clock or the negative edge of the clock? Why?</p>
-<p data-word-paragraph="28">3. In src/gcd_testbench.v , what will happen if you change result_rdy = 1; to result_rdy = 0; ? What state will the gcd_control.v state machine be in? (Can ignore if much time is consumed)</p>
+<p data-word-paragraph="27">2. In gcd_coprocessor_testbench, the inputs are changed on the negative edge of the clock to prevent hold time violations. Is the output checked on the positive edge of the clock or the negative edge of the clock? Why?</p>
+<p data-word-paragraph="28">3. In gcd_coprocessor_testbench, what will happen if you change result_rdy = 1; to result_rdy = 0; ? What state will the gcd_control.v state machine be in? (Can ignore if much time is consumed)</p>
 <h5 class="gcd-subheading" data-word-paragraph="29"><strong>Deliverables:</strong></h5>
 <ol>
 <li data-word-paragraph="30">Screenshot of waveforms of all inputs and outputs of the GCD module displayed together. Highlight portion showing correct operation of the design.
